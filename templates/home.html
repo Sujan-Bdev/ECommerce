@@ -15,7 +15,7 @@
     <link href="{% static "css/mdb.min.css"%}" rel="stylesheet">
     <!-- Your custom styles (optional) -->
     <link href="{% static "css/style.min.css"%}" rel="stylesheet">
-
+     <link href="{% static "css/home.css"%}" rel="stylesheet">
 
     <title>{% block title %}HamroPustakBhandar{% endblock %}</title>
 
@@ -25,7 +25,7 @@
 
 <header>
     <!--Navbar-->
-    <nav class="navbar navbar-expand-lg navbar-dark indigo">
+    <nav class="navbar navbar-expand-lg navbar-dark indigo fixed-top">
         <div class="container-fluid">
             <!--Navbar Brand-->
             <a class="navbar-brand" href="#">HamroPustakBhandar</a>
@@ -47,17 +47,41 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="#">About</a>
                     </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Account</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id ="AccountDropdownMenuLink" data-toggle = "dropdown"
+                           aria-haspopup="true" aria-expanded="false">Account</a>
+                        <div class="dropdown-menu dropdown-primary" aria-labelledby="AccountDropdownMenuLink">
+                            <a class="dropdown-item" href="#">AccountName</a>
+                            <a class="dropdown-item" href="#">LogOut</a>
+                        </div>
                     </li>
                 </ul>
+
             </div>
         </div>
     </nav>
+<!--Mask-->
+    <div id ="intro" class="view">
+        <div class="mask rgba-black-strong">
+            <div class="container-fluid d-flex align-items-center justify-content-center h-100">
 
-    {% block header %}
+            <div class="row d-flex justify-content-center text-center">
 
-    {% endblock %}
+                <div class="col-md-10">
+
+                    <!-- Heading -->
+                    <h2 class="display-4 font-weight-bold white-text pt-5 mb-2">A SOFA,<br>
+                    A GOOD BOOK,<br>
+                    AND YOU.</h2>
+
+                    <!-- Divider -->
+                    <hr class="hr-light">
+
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
 </header>
 
 <main>
