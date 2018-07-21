@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book</title>
+</head>
+<body>
+<h2>this is book list view.</h2>
+    {% for obj in object_list %}
+        <a href="{{ obj.get_absolute_url }}">{{ obj.title }}</a><br>
+    {% endfor %}
+</body>
+</html>
