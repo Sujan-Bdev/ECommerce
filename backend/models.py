@@ -54,10 +54,7 @@ class Book(models.Model):
 class Author(models.Model):
     name = models.CharField("Name", max_length=100, blank=False)
     email = models.EmailField("Email", max_length=50, blank=False, null=True)
-    book = models.ManyToManyField(Book,
-                                  through='BookLinkAuthor',
-                                  through_fields=('author', 'book'),
-                                  )
+
 
     # image
 
