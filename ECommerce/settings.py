@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'backend',
-    'account'
+    'account',
+    'widget_tweaks' #pip install django-widget-tweaks
 ]
 
 MIDDLEWARE = [
