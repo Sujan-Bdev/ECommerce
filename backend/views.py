@@ -1,7 +1,7 @@
 # Create your views here.
 from django.http import HttpResponse, Http404
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import ListView, TemplateView, DetailView
+from django.views.generic import ListView, TemplateView, DetailView, FormView
 
 from .models import Book
 
@@ -12,7 +12,7 @@ def home(request):
 
 
 class SampleView(TemplateView):
-    template_name = 'sample.html'
+    template_name = 'home.html'
 
 
 def book_list_view(request, *args, **kwargs):
@@ -52,6 +52,10 @@ class BookDetailSlugView(DetailView):
         return render(request, 'book_detail_slug_view.html', {
             'book': data
         })
+
+
+
+
 
 
 '''

@@ -1,0 +1,324 @@
+{% load  static %}
+
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <title>HamroPustakBhandar</title>
+
+        <!-- Icon css link -->
+        <link href="{% static "css/font-awesome.min.css"%}" rel="stylesheet">
+        <link href="{% static "vendors/line-icon/css/simple-line-icons.css"%}" rel="stylesheet">
+        <link href="{% static "vendors/elegant-icon/style.css"%}" rel="stylesheet">
+        <!-- Bootstrap -->
+        <link href=" {% static "css/bootstrap.min.css" %}" rel="stylesheet">
+        <link href="{% static "css/home.css" %}">
+        <!-- Rev slider css -->
+        <link href="{% static "vendors/revolution/css/settings.css"%}" rel="stylesheet">
+        <link href="{% static "vendors/revolution/css/layers.css"%}" rel="stylesheet">
+        <link href="{% static "vendors/revolution/css/navigation.css"%}" rel="stylesheet">
+        
+        <!-- Extra plugin css -->
+        <link href="{% static "vendors/owl-carousel/owl.carousel.min.css"%}" rel="stylesheet">
+        <link href="{% static "vendors/bootstrap-selector/css/bootstrap-select.min.css"%}" rel="stylesheet">
+        <link href="{% static "vendors/jquery-ui/jquery-ui.css"%}" rel="stylesheet">
+        
+        <link href="{% static "css/style.css"%}" rel="stylesheet">
+        <link href="{% static "css/responsive.css"%}" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        
+        <!--================Menu Area =================-->
+        <header class="shop_header_area carousel_menu_area">
+            <div class="carousel_menu_inner">
+                <div class="container">
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+
+                        </button>
+
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav mr-auto">
+
+
+                                <li class="nav-item dropdown">
+                                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                     Account
+                                    <i class="icon_plus" aria-hidden="true"></i>
+                                    <i class="icon_minus-06" aria-hidden="true"></i>
+                                  </a>
+                                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                      <li class="nav-item"><a class="nav-link" href="#">My Account</a></li>
+                                     <li class="nav-item"><a class="nav-link" href="#">Log Out</a></li>
+                                  </ul>
+                                </li>
+                            </ul>
+                            <ul class="navbar-nav justify-content-end">
+                                <li class="search_icon"><a href="#"><i class="icon-magnifier icons"></i></a></li>
+                                <li class="user_icon"><a href="#"><i class="icon-user icons"></i></a></li>
+                                <li class="cart_cart"><a href="#"><i class="icon-handbag icons"></i></a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <!--================End Menu Area =================-->
+        
+        <!--================Categories Banner Area =================-->
+        <div id ="intro" class="view">
+          <div class="mask rgba-black-strong">
+            <div class="container-fluid d-flex align-items-center justify-content-center h-100">
+            <div class="row d-flex justify-content-center text-center">
+                <div class="col-md-10">
+                    <!-- Heading -->
+                    <h2 class="display-4 font-weight-bold white-text pt-5 mb-2">A SOFA,<br>
+                    A GOOD BOOK,<br>
+                    AND YOU.</h2>
+                    <!-- Divider -->
+                    <hr class="hr-light">
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+        <!--================End Categories Banner Area =================-->
+        
+        <!--================Categories Product Area =================-->
+        <section class="categories_product_main p_80">
+            <div class="container">
+                <div class="categories_main_inner">
+                    <div class="row row_disable">
+                        <div class="col-lg-9 float-md-right">
+                            <div class="showing_fillter">
+                                <div class="row m0">
+                                    <div class="first_fillter">
+                                        <h4>Showing 1 to 12 of 30 total</h4>
+                                    </div>
+                                    <div class="secand_fillter">
+                                        <h4>SORT BY :</h4>
+                                        <select class="selectpicker">
+                                            <option>Name</option>
+                                            <option>Name 2</option>
+                                            <option>Name 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="third_fillter">
+                                        <h4>Show : </h4>
+                                        <select class="selectpicker">
+                                            <option>09</option>
+                                            <option>10</option>
+                                            <option>10</option>
+                                        </select>
+                                    </div>
+                                    <div class="four_fillter">
+                                        <h4>View</h4>
+                                        <a class="active" href="#"><i class="icon_grid-2x2"></i></a>
+                                        <a href="#"><i class="icon_grid-3x3"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="c_product_grid_details">
+                                <div class="c_product_item">
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-6">
+                                            <div class="c_product_img">
+                                                <img class="img-fluid" src="img/product/l-product-2.jpg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8 col-md-6">
+                                            <div class="c_product_text">
+                                                <h3>Nike Max Air Vapor Power</h3>
+                                                <h5>$45.05</h5>
+                                                <ul class="product_rating">
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                </ul>
+                                                <h6>Available In <span>Stock</span></h6>
+                                                <p>Curabitur semper varius lectus sed consequat. Nam accumsan dapibus sem, sed lobortis nisi porta vitae. Ut quam tortor, facilisis nec laoreet consequat, malesuada a massa. Proin pretium tristique leo et imperdiet.</p>
+                                                <ul class="c_product_btn">
+                                                    <li class="p_icon"><a href="#"><i class="icon_piechart"></i></a></li>
+                                                    <li><a class="add_cart_btn" href="#">Add To Cart</a></li>
+                                                    <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <nav aria-label="Page navigation example" class="pagination_area">
+                                  <ul class="pagination">
+                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">6</a></li>
+                                    <li class="page-item next"><a class="page-link" href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                                  </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 float-md-right">
+                            <div class="categories_sidebar">
+                                <aside class="l_widgest l_p_categories_widget">
+                                    <div class="l_w_title">
+                                        <h3>Categories</h3>
+                                    </div>
+                                    <ul class="navbar-nav">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">Romance
+                                                <i class="icon_plus" aria-hidden="true"></i>
+                                            <i class="icon_minus-06" aria-hidden="true"></i>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">Fiction
+                                                <i class="icon_plus" aria-hidden="true"></i>
+                                            <i class="icon_minus-06" aria-hidden="true"></i>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">Science
+                                                <i class="icon_plus" aria-hidden="true"></i>
+                                            <i class="icon_minus-06" aria-hidden="true"></i>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link disabled" href="#">Action & Adventure
+                                                <i class="icon_plus" aria-hidden="true"></i>
+                                                <i class="icon_minus-06" aria-hidden="true"></i>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link disabled" href="#">Mystery
+                                                <i class="icon_plus" aria-hidden="true"></i>
+                                                <i class="icon_minus-06" aria-hidden="true"></i>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link disabled" href="#">History
+                                                <i class="icon_plus" aria-hidden="true"></i>
+                                                <i class="icon_minus-06" aria-hidden="true"></i>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link disabled" href="#">All Categories
+                                                <i class="icon_plus" aria-hidden="true"></i>
+                                                <i class="icon_minus-06" aria-hidden="true"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </aside>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--================End Categories Product Area =================-->
+        
+        <!--================Footer Area =================-->
+        <footer class="footer_area">
+            <div class="container">
+                <div class="footer_widgets">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-6">
+                            <aside class="f_widget f_about_widget">
+                                <p>Persuit is a Premium PSD Template. Best choice for your online store. Let purchase it to enjoy now</p>
+                                <h6>Social:</h6>
+                                <ul>
+                                    <li><a href="#"><i class="social_facebook"></i></a></li>
+                                    <li><a href="#"><i class="social_twitter"></i></a></li>
+                                    <li><a href="#"><i class="social_pinterest"></i></a></li>
+                                    <li><a href="#"><i class="social_instagram"></i></a></li>
+                                    <li><a href="#"><i class="social_youtube"></i></a></li>
+                                </ul>
+                            </aside>
+                        </div>
+                        <div class="col-lg-2 col-md-4 col-6">
+                            <aside class="f_widget link_widget f_info_widget">
+                                <div class="f_w_title">
+                                    <h3>Information</h3>
+                                </div>
+                                <ul>
+                                    <li><a href="#">About us</a></li>
+                                    <li><a href="#">Delivery information</a></li>
+                                    <li><a href="#">Terms & Conditions</a></li>
+                                    <li><a href="#">Help Center</a></li>
+                                    <li><a href="#">Returns & Refunds</a></li>
+                                </ul>
+                            </aside>
+                        </div>
+                        <div class="col-lg-2 col-md-4 col-6">
+                            <aside class="f_widget link_widget f_service_widget">
+                                <div class="f_w_title">
+                                    <h3>Customer Service</h3>
+                                </div>
+                                <ul>
+                                    <li><a href="#">My account</a></li>
+                                    <li><a href="#">Order History</a></li>
+                                    <li><a href="#">Wish List</a></li>
+                                    <li><a href="#">Newsletter</a></li>
+                                    <li><a href="#">Contact Us</a></li>
+                                </ul>
+                            </aside>
+                        </div>
+                        <div class="col-lg-2 col-md-4 col-6">
+                            <aside class="f_widget link_widget f_extra_widget">
+                                <div class="f_w_title">
+                                    <h3>Extras</h3>
+                                </div>
+                                <ul>
+                                    <li><a href="#">Brands</a></li>
+                                    <li><a href="#">Gift Vouchers</a></li>
+                                    <li><a href="#">Affiliates</a></li>
+                                    <li><a href="#">Specials</a></li>
+                                </ul>
+                            </aside>
+                        </div>
+                        <div class="col-lg-2 col-md-4 col-6">
+                            <aside class="f_widget link_widget f_account_widget">
+                                <div class="f_w_title">
+                                    <h3>My Account</h3>
+                                </div>
+                                <ul>
+                                    <li><a href="#">My account</a></li>
+                                    <li><a href="#">Ordr History</a></li>
+                                    <li><a href="#">Wish List</a></li>
+                                    <li><a href="#">Newsletter</a></li>
+                                </ul>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!--================End Footer Area =================-->
+        
+        
+        
+        
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+    </body>
+</html>
