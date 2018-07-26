@@ -8,7 +8,7 @@ from .models import Book
 
 def home(request):
     # boards = Board.objects.all()
-    return render(request, 'home.html')
+    return render(request, 'index.html')
 
 
 class SampleView(TemplateView):

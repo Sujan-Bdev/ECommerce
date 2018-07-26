@@ -1,4 +1,3 @@
-
 html,
 body,
 header,
@@ -14,3 +13,6 @@ header,
     background-size: cover;
 }
 
+.top-nav-collapse {
+    background-color: #24355C;
+}

@@ -13,8 +13,3 @@ urlpatterns = [
     url(r'^book/(?P<slug>[\w-]+)/$', BookDetailSlugView.as_view(), name='slug'),
 
 ]
-
-urlpatterns+=[
-    path('signup/customer',views.CustomerSignUpView.as_view(),name='signup_customer'),
-    path('signup/staff',views.StaffSignUpView.as_view(),name='signup_admin'),
-]
