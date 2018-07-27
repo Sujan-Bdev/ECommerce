@@ -1,7 +1,7 @@
 from django.conf.urls import url
 from django.urls import path
 
-from backend.views import SampleView, book_list_view, BookDetailSlugView
+from backend.views import SampleView, BookDetailSlugView
 from . import views
 
 urlpatterns = [
@@ -10,6 +10,6 @@ urlpatterns = [
     path('sample/', SampleView.as_view(), name='sample'),
     path('book/<int:pk>', views.book_detail_view, name='book-detail'),
     # path('book/<slug:slug>,<int:pk>/', views.book_detail_slug_view, name='slug-detail'),
-    url(r'^book/(?P<slug>[\w-]+)/$', BookDetailSlugView.as_view(), name='slug'),
+    url(r'^book/(?P<slug>[\w-]+)/$', BookDetailSlugView.as_view(), name='detail'),
 
 ]

@@ -68,7 +68,8 @@ class Book(models.Model):
         ordering = ["title"]
 
     def get_absolute_url(self):
-        return "/book/{slug}/".format(slug=self.slug)
+        # return "/book/{slug}/".format(slug=self.slug)
+        return reverse('detail', kwargs={"slug": self.slug})
 
     def age(self):
         return timesince(self.publish_date)
@@ -108,10 +109,9 @@ pre_save.connect(book_pre_save_receiver, sender=Book)
 
 
 class Customer(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE,null=True,related_name='customer_profile')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='customer_profile')
     contact = models.CharField(max_length=14, blank=True, null=True)
     location = models.TextField(blank=True, null=True)
 
     def __str__(self):
-        return '%s' % (self.user)
-
+        return '%s' % self.user
