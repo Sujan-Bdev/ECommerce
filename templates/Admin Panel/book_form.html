@@ -1,0 +1,27 @@
+{% extends 'Admin Panel/index.html' %}
+
+{% block apptitle %}
+    <h1><i class="fa fa-plus"></i> Add Book</h1>
+          <p>Enter Details of new book.</p>
+
+{% endblock %}
+{% block url %}
+
+    books
+{% endblock %}
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-6">
+          <div class="tile">
+            <h3 class="tile-title">Book</h3>
+              <form method="post" novalidate>
+    {% csrf_token %}
+    {% include 'form_base.html' %}
+    <button type="submit">Submit</button>
+</form>
+            </div>
+        </div>
+      </div>
+
+{% endblock %}
