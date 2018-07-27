@@ -30,7 +30,8 @@
         <!--/.Navbar-->
 
         <!--Mask-->
-      <div id="intro" class="view">
+
+           <div id="intro" class="view">
 
             <div class="mask rgba-black-strong">
 
@@ -70,6 +71,7 @@
                    <div class="row">
                        <div class="col-lg-3 float-md-right">
                             <h4>Categories</h4>
+                           {% block category %}{% endblock %}
                        </div>
                        <div class="col-8">
                           {% block product %}{% endblock %}
