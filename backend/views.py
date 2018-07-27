@@ -20,7 +20,7 @@ def book_list_view(request, *args, **kwargs):
     print(kwargs)
     queryset = Book.objects.all()
     context = {
-        'object_list': queryset
+        'object_list': queryset,
     }
     return render(request, 'book_list_view.html', context)
 
