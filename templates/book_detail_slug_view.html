@@ -1,14 +1,79 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <h2>Is this working??</h2>
-    <h4>This is the view from the Class based views</h4>
-    <h1> {{ book.title }}</h1>
-    <img src="{{ book.image.url }}">
-    <p>{{ book.description }}</p>
-</body>
-</html>
+{% extends 'index.html' %}
+
+{% block content %}
+    <br><br><br>
+    <section class="section pb-3 text-center">
+    <!--Section heading-->
+    <h1 class="section-heading h1 pt-4">Book Details</h1>
+    <div class="container mb-5 mt-5">
+  <!-- Grid row -->
+    <div class="row ml-5">
+
+    <!-- Grid column -->
+    <div class="col-md-6 mb-5">
+        <span class="border border-success">
+            <img  src="{{ book.image.url }}" class="img-fluid z-depth-1" alt="{{ book.title }} image">
+        </span>
+    </div>
+    <!-- Grid column -->
+
+    <!-- Grid column -->
+    <div class="col-md-6 mb-3">
+        <!--Jumbotron-->
+<div class="jumbotron jumbotron-fluid">
+
+    <div class="container">
+        <h1 class="h1-responsive mb-4 mt-2 blue-text font-bold">{{ book.title }}</h1>
+        <hr class="hr-dark">
+       <div class="row">
+           <div class="col-lg-6">
+               <p class="font-weight-bold green-text">Rs. {{ book.price }}</p>
+           </div>
+           <div class="col-lg-6">
+               <p class="font-weight-bold red-text">Author: (Author Name)</p>
+           </div>
+       </div>
+        <hr class="hr-dark">
+           <div class="row ml-4">
+               <p class="text-center">Quantity: </p>
+           </div>
+       </div>
+         <hr class="hr-dark">
+           <div class="row ml-4">
+              <button type="button" class="btn btn-dark-green">Add to Cart</button>
+           </div>
+       </div>
+    </div>
+
+</div>
+
+    </div>
+    <!-- Grid column -->
+
+</div>
+<!-- Grid row -->
+    </div>
+        <div class="row ml-5">
+            <table class="table table-hover">
+  <tbody>
+    <tr>
+        <td colspan="2">{{ book.description }}</td>
+    </tr>
+   <tr>
+       <td><h6 class="font-weight-bold">Author</h6></td>
+       <td>{{ book.author }}</td>
+   </tr>
+   <tr>
+       <td><h6 class="font-weight-bold">Pages</h6></td>
+       <td>{{ book.page }}</td>
+   </tr>
+   <tr>
+       <td><h6 class="font-weight-bold">Year Published</h6></td>
+       <td>{{ book.publish_date }}</td>
+   </tr>
+  </tbody>
+</table>
+        </div>
+    <br><br><br><br><br><br>
+    </section>
+{% endblock %}

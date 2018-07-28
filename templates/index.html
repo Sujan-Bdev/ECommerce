@@ -26,7 +26,7 @@
     <!--Navbar-->
     {% include 'Navbar.html' %}
     <!--/.Navbar-->
-
+{% block content %}
     <!--Mask-->
     {% include 'LandingCover.html' %}
     <!--/.Mask-->
@@ -60,6 +60,7 @@
 </main>
 <!--Main layout-->
 
+{% endblock %}
 <!-- Social buttons -->
 {% block footer %}
     {% include 'Footer.html' %}
