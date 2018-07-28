@@ -45,19 +45,17 @@
                     </div>
                     <div class="col-8">
                         {% include 'book_list.html' %}
+                        <br>
                         {% include 'pagination.html' %}
+                        <br>
+                        <br>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section>
-
-        </section>
-
-        <section>
-
-        </section>
+        {% include 'exclusiveBooks.html' %}
+        {% include 'bookLaunch.html' %}
     </div>
 </main>
 <!--Main layout-->
@@ -90,11 +88,7 @@
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="{% static "jss/mdb.min.js" %}"></script>
 <!-- Carousel options -->
-<script>
-    $('.carousel').carousel({
-        interval: 3000,
-    })
-</script>
+
 </body>
 
 </html>
