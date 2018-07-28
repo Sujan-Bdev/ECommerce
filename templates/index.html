@@ -14,7 +14,7 @@
     <link href="{% static "css/mdb.min.css"%}" rel="stylesheet">
     <!-- Your custom styles (optional) -->
     <link href="{% static "css/style.min.css"%}" rel="stylesheet">
-     <link href="{% static "css/home.css"%}" rel="stylesheet">
+
     <title>{% block title %}HamroPustakBhandar{% endblock %}</title>
 </head>
 
@@ -24,46 +24,14 @@
     <header>
 
         <!--Navbar-->
-        {% block navbar %}
                 {% include 'Navbar.html' %}
-        {% endblock %}
         <!--/.Navbar-->
 
         <!--Mask-->
-
-           <div id="intro" class="view">
-
-            <div class="mask rgba-black-strong">
-
-                <div class="container-fluid d-flex align-items-center justify-content-center h-100">
-
-                    <div class="row d-flex justify-content-center text-center">
-
-                        <div class="col-md-10">
-
-                            <!-- Heading -->
-                            <h2 class="display-4 font-weight-bold white-text pt-5 mb-2">A SOFA,<br>
-                                A GOOD BOOK,<br>
-                                AND YOU.
-                            </h2>
-                            <!-- Divider -->
-                            <hr class="hr-light">
-                            <!-- Description -->
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
+            {% include 'LandingCover.html' %}
         <!--/.Mask-->
-
     </header>
     <!--Main Navigation-->
-
-
     <main class="mt-5">
         <div class="container">
             <section>
@@ -71,7 +39,6 @@
                    <div class="row">
                        <div class="col-lg-3 float-md-right">
                             <h4>Categories</h4>
-                           {% block category %}{% endblock %}
                        </div>
                        <div class="col-8">
                           {% block product %}{% endblock %}
