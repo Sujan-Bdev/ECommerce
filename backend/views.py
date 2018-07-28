@@ -6,14 +6,20 @@ from django.views.generic import ListView, TemplateView, DetailView, FormView
 from .models import Book, Category
 
 
-def home(request):
-    # Category
-    category = Category.objects.all()
-    print(category)
-    context = {
-        'categories': category
-    }
-    return render(request, 'index.html', context)
+class HomeView(TemplateView):
+    # queryset = Book.objects.all()
+    # template_name = 'book_detail_slug_view.html'
+
+    def get(self, request, *args, **kwargs):
+        print(args)
+        print(kwargs)
+        queryset = Book.objects.all()
+        category = Category.objects.all()
+        context = {
+            'object_list': queryset,
+            'categories': category
+        }
+        return render(request, 'index.html', context)
 
 
 class SampleView(TemplateView):
@@ -64,8 +70,3 @@ class BookDetailSlugView(DetailView):
         })
 
 
-'''
-class BookListView(ListView):
-    queryset = Book.objects.all()
-    template_name = 'book_list_view.html'
-'''

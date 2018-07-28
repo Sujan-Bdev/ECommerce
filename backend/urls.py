@@ -1,11 +1,11 @@
 from django.conf.urls import url
 from django.urls import path
 
-from backend.views import SampleView, BookDetailSlugView, TestView
+from backend.views import SampleView, BookDetailSlugView, TestView, HomeView
 from . import views
 
 urlpatterns = [
-    path('', views.home, name='index'),
+    path('', HomeView.as_view(), name='index'),
     path('home/', SampleView.as_view(), name='home'),
     path('book/', views.book_list_view, name='book-list'),
     path('test/', TestView.as_view(), name='test'),
