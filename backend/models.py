@@ -36,7 +36,7 @@ class Category(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ordering = ['-created_at']
+        ordering = ['title']
         verbose_name_plural = 'Categories'
 
     def __unicode__(self):
