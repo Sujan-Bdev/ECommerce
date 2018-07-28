@@ -15,6 +15,10 @@ class SampleView(TemplateView):
     template_name = 'home.html'
 
 
+class TestView(TemplateView):
+    template_name = 'static.html'
+
+
 def book_list_view(request, *args, **kwargs):
     print(args)
     print(kwargs)
@@ -37,6 +41,7 @@ def book_detail_view(request, pk=None, *args, **kwargs):
 class BookDetailSlugView(DetailView):
     # queryset = Book.objects.all()
     # template_name = 'book_detail_slug_view.html'
+    pass
 
     def get(self, *args, **kwargs):
         request = self.request
@@ -52,10 +57,6 @@ class BookDetailSlugView(DetailView):
         return render(request, 'book_detail_slug_view.html', {
             'book': data
         })
-
-
-
-
 
 
 '''
