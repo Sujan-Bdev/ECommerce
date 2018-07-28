@@ -3,12 +3,17 @@ from django.http import HttpResponse, Http404
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, TemplateView, DetailView, FormView
 
-from .models import Book
+from .models import Book, Category
 
 
 def home(request):
-    # boards = Board.objects.all()
-    return render(request, 'index.html')
+    # Category
+    category = Category.objects.all()
+    print(category)
+    context = {
+        'categories': category
+    }
+    return render(request, 'index.html', context)
 
 
 class SampleView(TemplateView):
