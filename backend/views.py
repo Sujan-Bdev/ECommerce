@@ -2,7 +2,7 @@
 from django.http import HttpResponse, Http404
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, TemplateView, DetailView, FormView
-
+from django.core.paginator import Paginator
 from .models import Book, Category
 
 
@@ -15,9 +15,13 @@ class HomeView(TemplateView):
         print(kwargs)
         queryset = Book.objects.all()
         category = Category.objects.all()
+        paginator = Paginator(queryset, 2)
+        page = request.GET.get('page')
+        book_list = paginator.get_page(page)
         context = {
-            'object_list': queryset,
-            'categories': category
+            'object_list': book_list,
+            'categories': category,
+            'book_list': book_list
         }
         return render(request, 'index.html', context)
 
