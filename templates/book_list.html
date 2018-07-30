@@ -2,17 +2,29 @@
     <div class="container">
         <div class="row">
             {% for obj in object_list %}
-                <div class="col">
-                    <div class="card" style="width: 18rem;">
+                <div class="col-sm-4">
+
+                    <div id="logo" class="card card-hover mt-4" style="width: 15rem;">
+                       <div style="padding-top:10px; padding-left:10px;height: 200px; width:14.3rem;overflow: hidden">
+                           <a href="{{ obj.get_absolute_url }}"><span></span></a>
+
                         {% if obj.image %}
-                          <a href="{{ obj.get_absolute_url }}" >
-                            <img class="card-img-top" src="{{ obj.image.url }}" alt="{{ obj.title }} logo">
-                          </a>
+                            <img style="height: 100%;" class="img-responsive card-img-top" src="{{ obj.image.url }}" alt="{{ obj.title }} logo">
+
                         {% endif %}
+                       </div>
                         <div class="card-body">
                             <h5 class="card-title">{{ obj.title }}</h5>
-                            <p class="card-text">Details about book little</p>
-                            <a href="{{ obj.get_absolute_url }}" class="btn btn-primary">View Details</a>
+                            <p class="card-text">
+                                By
+                                {% for item in obj.booklinkauthor_set.all %}
+                                    {% if forloop.last %}
+                                    {{ item.author.name }}
+                                    {% else %}
+                                    {{ item.author.name }},
+                                    {% endif %}
+                                    {% endfor %}
+                        </p>
                         </div>
                     </div>
                 </div>

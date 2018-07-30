@@ -30,10 +30,11 @@ def upload_image_path(instance, filename):
 
 class Category(models.Model):
     title = models.CharField('title', max_length=100, default='')
-    description = models.TextField()
+    description = models.TextField(default='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.')
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    slug = models.SlugField(blank=True, unique=True, null=True)
 
     class Meta:
         ordering = ['title']
@@ -46,7 +47,7 @@ class Category(models.Model):
         return smart_text(self.title)
 
     def get_absolute_url(self):
-        pass
+        return reverse('category', kwargs={"slug": self.slug})
 
 
 class Book(models.Model):
@@ -78,10 +79,6 @@ class Book(models.Model):
 class Author(models.Model):
     name = models.CharField("Name", max_length=100, blank=False)
     email = models.EmailField("Email", max_length=50, blank=False, null=True)
-    book = models.ManyToManyField(Book,
-                                  through='BookLinkAuthor',
-                                  through_fields=('author', 'book'),
-                                  )
 
     # image
 
@@ -106,6 +103,14 @@ def book_pre_save_receiver(sender, instance, *args, **kwargs):
 
 
 pre_save.connect(book_pre_save_receiver, sender=Book)
+
+
+def category_pre_save_receiver(sender, instance, *args, **kwargs):
+    if not instance.slug:
+        instance.slug = unique_slug_generator(instance)
+
+
+pre_save.connect(category_pre_save_receiver, sender=Category)
 
 
 class Customer(models.Model):

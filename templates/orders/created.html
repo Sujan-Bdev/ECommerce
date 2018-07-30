@@ -1,0 +1,24 @@
+{% load static %}
+<html>
+<head>
+      <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <!-- Font-icon css-->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+<div class="container">
+    <div class="row" style="margin-top: 6%">
+    <div class="col-md-8 col-md-offset-2">
+        <h3 class="page-header">Thank You for Shopping With US</h3>
+    <p>Your Order has been successfully completed Your order number is <strong>{{ order.id }}</strong></p>
+    <a href="{% url 'index' %}">Home</a>
+    </div>
+</div>
+</div>
+</body>
+  <script src="{% static 'jss/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'jss/popper.min.js' %}"></script>
+    <script src="{% static 'jss/bootstrap.min.js' %}"></script>
+
+</html>

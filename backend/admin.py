@@ -4,7 +4,7 @@ from .models import Book, Category, BookLinkAuthor, Author
 
 
 class BookAdmin(admin.ModelAdmin):
-    list_display = ['title',  'category', 'stock', 'available']
+    list_display = ['title', 'category', 'stock', 'price', 'available']
     list_display_links = ['title']
     list_per_page = 50
     ordering = ['title']
@@ -23,14 +23,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 admin.site.register(Category, CategoryAdmin)
 
-
-class AuthorAdmin(admin.ModelAdmin):
-    list_display = ['name', 'email']
-    list_per_page = 20
-    search_fields = ['name']
-
-
-admin.site.register(Author, AuthorAdmin)
+admin.site.register(Author)
 
 
 class BookLinkAuthorAdmin(admin.ModelAdmin):

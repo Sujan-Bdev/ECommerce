@@ -1,0 +1,28 @@
+.card-hover:hover{
+    height: 95%;
+    background-color: darkslateblue;
+    opacity: 10;
+    cursor: pointer;
+    -webkit-transition: opacity 3s ease;
+
+}
+.card-hover:hover .card-title{
+    font-size: 25px;
+    color: white;
+}
+.card-hover:hover .card-text{
+    color: white;
+}
+
+#logo a span {
+  position:absolute;
+  width:100%;
+  height:100%;
+  top:0;
+  left: 0;
+
+  /* edit: added z-index */
+  z-index: 1;
+
+}
+

@@ -21,8 +21,13 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('cart/', include('cart.urls')),
+    path('orders/', include('orders.urls')),
+    path('account/', include('account.urls')),
     path('', include('backend.urls')),
+    path('eadmin/', include('AdminPanel.urls')),
     path('search/', include('search.url')),
+
 ]
 
 urlpatterns += staticfiles_urlpatterns()
