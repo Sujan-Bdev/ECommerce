@@ -1,7 +1,8 @@
-{% extends "home.html" %}
-
-{% block title %}My amazing blog{% endblock %}
-
-{% block content %}
-    <h3>LOREM IPSOM</h3>
-{% endblock %}
+<form method="get">
+    <select name="dropdown" onchange="this.form.submit()">
+    <option selected="selected" disabled>Objects on page:</option>
+            <option value="25">10</option>
+            <option value="50">20</option>
+            <option value="100">100</option>
+    </select>
+</form>

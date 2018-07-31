@@ -1,67 +1,43 @@
 {% extends 'index.html' %}
 
 {% block content %}
-    <br><br><br>
-    <section class="section pb-3 text-center">
-    <!--Section heading-->
-    <h1 class="section-heading h1 pt-4">Book Details</h1>
-    <div class="container mb-5 mt-5">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+        <div class="container">
   <!-- Grid row -->
-    <div class="row ml-5">
+    <div class="row">
 
     <!-- Grid column -->
-    <div class="col-md-6 mb-5">
-        <span class="border border-success">
-            <img  src="{{ book.image.url }}" class="img-fluid z-depth-1" alt="{{ book.title }} image">
+    <div class="col-md-6">
+
+        <span style="padding-left: 100px">
+            <img  src="{{ book.image.url }}" class="img-fluid z-depth-1 rounded " alt="{{ book.title }} image">
         </span>
+
     </div>
     <!-- Grid column -->
 
     <!-- Grid column -->
-    <div class="col-md-6 mb-3">
+    <div class="col-md-6 mb-2">
         <!--Jumbotron-->
 <div class="jumbotron jumbotron-fluid">
 
     <div class="container">
-        <h1 class="h1-responsive mb-4 mt-2 blue-text font-bold">{{ book.title }}</h1>
-        <hr class="hr-dark">
-       <div class="row">
-           <div class="col-lg-6">
-               <p class="font-weight-bold green-text">Rs. {{ book.price }}</p>
-           </div>
-           <div class="col-lg-6">
-               <p class="font-weight-bold red-text">Author: (Author Name)</p>
-           </div>
-       </div>
-        <hr class="hr-dark">
-           <div class="row ml-4">
-               <p class="text-center">Quantity: </p>
-           </div>
-       </div>
-         <hr class="hr-dark">
-           <div class="row ml-4">
-              <button type="button" class="btn btn-dark-green">Add to Cart</button>
-           </div>
-       </div>
-    </div>
+        <h5 class="h5-responsive mb-1 blue-text text-center font-bold">{{ book.title }}</h5>
 
-</div>
-
-    </div>
-    <!-- Grid column -->
-
-</div>
-<!-- Grid row -->
-    </div>
         <div class="row ml-5">
             <table class="table table-hover">
   <tbody>
-    <tr>
-        <td colspan="2">{{ book.description }}</td>
-    </tr>
+
    <tr>
        <td><h6 class="font-weight-bold">Author</h6></td>
-       <td>{{ book.author }}</td>
+       <td>{% for b_and_a in book.booklinkauthor_set.all %}
+                    {{ b_and_a.author.name }}
+           </td>
+       {% endfor %}
    </tr>
    <tr>
        <td><h6 class="font-weight-bold">Pages</h6></td>
@@ -71,9 +47,31 @@
        <td><h6 class="font-weight-bold">Year Published</h6></td>
        <td>{{ book.publish_date }}</td>
    </tr>
+  <tr>
+       <td><h6 class="font-weight-bold">Price</h6></td>
+       <td>{{ book.price }}</td>
+   </tr>
   </tbody>
 </table>
         </div>
-    <br><br><br><br><br><br>
-    </section>
+                 <hr class="hr-dark">
+           <div class="row ml-4">
+               <form class="form-inline" action="{% url "cart:cart_add" book.id %}" method="post">
+                                {% csrf_token %}
+                   {% include 'form_base.html' with form=cart_book_form %}
+                                <input type="submit" value="Add to cart" class="btn btn-md btn-primary">
+                            </form>
+
+           </div>
+       </div>
+       </div>
+    </div>
+</div>
+
+        <h4>Description</h4>
+        <p>{{ book.description }}</p>
+  </div>
+    <!-- Grid column -->
+
+
 {% endblock %}
