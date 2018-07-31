@@ -3,7 +3,6 @@ from django.conf import settings
 from backend.models import Book
 from coupons.models import Coupon
 
-
 class Cart(object):
     def __init__(self, request):
         self.session = request.session
@@ -68,4 +67,3 @@ class Cart(object):
 
     def get_total_price_after_discount(self):
         return self.get_total_price() - self.get_discount()
-
