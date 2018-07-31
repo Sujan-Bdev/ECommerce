@@ -8,22 +8,11 @@ from backend.models import Customer, Book, Author, BookLinkAuthor
 from django.contrib.auth.models import User
 
 
-class UserCreateForm(forms.ModelForm):
+class UserCreateForm(UserCreationForm):
+    password = forms.CharField(widget=forms.PasswordInput(), label='Password')
     password2 = forms.CharField(widget=forms.PasswordInput(), label='Confirm Password')
     location = forms.CharField()
     contact = forms.CharField()
-
-    def clean(self):
-        cleaned_data = super(UserCreateForm, self).clean()
-        username = cleaned_data.get('username')
-        password = cleaned_data.get('password')
-        password2 = cleaned_data.get('password2')
-        if password == None:
-            raise forms.ValidationError("Password is empty")
-        password_validation.validate_password(password=password, user=username)
-        if password != password2:
-            raise forms.ValidationError("The two password are not same")
-        return cleaned_data
 
     def save(self):
         new_user = User.objects.create_user(username=self.cleaned_data['username'],
@@ -39,7 +28,7 @@ class UserCreateForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'username', 'email', 'password',)
+        fields = ('first_name', 'last_name', 'username', 'email', 'password','password2')
 
 
 class StaffCreateForm(forms.ModelForm):

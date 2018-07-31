@@ -1,7 +1,10 @@
-from django.shortcuts import render
+from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import FormView
+from django.contrib.auth import login as auth_login
 
+from account.forms import UserCreateForm
 from . import forms
 
 
@@ -16,16 +19,20 @@ class CustomerSignUpView(FormView):
         return super().form_valid(form)
 
 
+
+
 class StaffSignUpView(FormView):
     template_name = 'registration/signup_form_admin.html'
     form_class = forms.StaffCreateForm
     success_url = reverse_lazy('signup_admin')
 
     def form_valid(self, form):
-            user = form.save()
-            user.save()
-            return super().form_valid(form)
-
+        user = form.save()
+        user.save()
+        return super().form_valid(form)
 
 
 # Create your views here.
+
+
+
