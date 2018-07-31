@@ -15,12 +15,13 @@ class HomeView(TemplateView):
 
     def get(self, request, *args, **kwargs):
         books = Book.objects.all()
-        print(books)
         category = Category.objects.all()
+        pagination = Paginator(books, 2)
+        page = request.GET.get('page')
+        book_list = pagination.get_page(page)
         context = {
-            'object_list': books,
+            'object_list': book_list,
             'categories': category,
-
         }
         return render(request, 'index.html', context)
 
