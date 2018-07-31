@@ -9,6 +9,7 @@ from django.contrib.auth.models import User
 
 
 class UserCreateForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput(), label='Password')
     password2 = forms.CharField(widget=forms.PasswordInput(), label='Confirm Password')
     location = forms.CharField()
     contact = forms.CharField()
@@ -39,7 +40,7 @@ class UserCreateForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'username', 'email', 'password',)
+        fields = ('first_name', 'last_name', 'username', 'email',)
 
 
 class StaffCreateForm(forms.ModelForm):
