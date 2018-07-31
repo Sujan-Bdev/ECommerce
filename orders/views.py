@@ -1,8 +1,15 @@
 from django.shortcuts import render
 
 from .models import OrderItem
+from backend.models import Book
 from .forms import OrderCreateForm
 from cart.cart import Cart
+
+def order_completed(request,id):
+    if Book.objects.get(id=id).stock>1:
+        Book.objects.get(id=id).stock-=1
+    else:
+        Book.objects.get(id=id).stock=0
 
 
 def order_create(request):
