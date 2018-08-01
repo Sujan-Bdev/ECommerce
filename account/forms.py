@@ -28,7 +28,7 @@ class UserCreateForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'username', 'email', 'password','password2')
+        fields = ('first_name', 'last_name', 'username', 'email', 'password', 'password2')
 
 
 class StaffCreateForm(forms.ModelForm):
@@ -61,4 +61,4 @@ class StaffCreateForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'username', 'email', 'password', 'is_staff')
+        fields = ('first_name', 'last_name', 'username', 'email',)
