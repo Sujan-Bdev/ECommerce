@@ -8,7 +8,7 @@ from backend.models import Customer, Book, Author, BookLinkAuthor
 from django.contrib.auth.models import User
 
 
-class UserCreateForm(UserCreationForm):
+class UserCreateForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput(), label='Password')
     password2 = forms.CharField(widget=forms.PasswordInput(), label='Confirm Password')
     location = forms.CharField()
@@ -28,7 +28,7 @@ class UserCreateForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'username', 'email', 'password', 'password2')
+        fields = ('first_name', 'last_name', 'username', 'email',)
 
 
 class StaffCreateForm(forms.ModelForm):
