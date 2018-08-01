@@ -1,8 +1,11 @@
 from django import forms
-
-BOOK_QUANTITY_CHOICES = [(i, str(i)) for i in range(1, 26)]
+from backend.models import Book
 
 
 class CartAddBookForm(forms.Form):
-    quantity = forms.TypedChoiceField(choices=BOOK_QUANTITY_CHOICES, coerce=int)
-    update = forms.BooleanField(required=False, initial=False, widget=forms.HiddenInput)
+    update=forms.BooleanField(required=False,initial=False,widget=forms.HiddenInput)
+
+    def __init__(self,*args,**kwargs):
+        id=kwargs.pop("id")
+        super(CartAddBookForm,self).__init__(*args,**kwargs)
+        self.fields['quantity']=forms.TypedChoiceField(choices=[(i,str(i)) for i in range(1,Book.objects.get(id=id).stock+1)],coerce=int)

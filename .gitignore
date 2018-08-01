@@ -1,0 +1,11 @@
+
+*.xml
+*.xml
+backend/migrations/0001_initial.py
+orders/migrations/0001_initial.py
+ECommerce/settings.py
+coupons/migrations/0001_initial.py
+.idea/codeStyles/Project.xml
+.idea/dataSources/87850fb5-c201-4c59-b6b5-1a3269b84e4a.xml
+.idea/ECommerce.iml
+.idea/misc.xml

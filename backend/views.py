@@ -52,7 +52,7 @@ def book_list_view(request, *args, **kwargs):
 def book_detail_view(request, pk=None, *args, **kwargs):
     # instance = Book.objects.get(pk=pk)
     instance = get_object_or_404(Book, pk=pk)
-    cart_book_form = CartAddBookForm()
+    cart_book_form=CartAddBookForm(id=pk)
     context = {
         'object': instance,
         'cart_book_form': cart_book_form
@@ -63,7 +63,6 @@ def book_detail_view(request, pk=None, *args, **kwargs):
 class BookDetailSlugView(DetailView):
     # queryset = Book.objects.all()
     # template_name = 'book_detail_slug_view.html'
-    cart_book_form = CartAddBookForm()
 
     def get(self, *args, **kwargs):
         request = self.request
@@ -71,14 +70,16 @@ class BookDetailSlugView(DetailView):
 
         try:
             data = get_object_or_404(Book, slug=slug)
+            cart_book_form = CartAddBookForm(id=data.id)
         except Book.DoesNotExist:
             raise Http404("Not Found!!!")
         except Book.MultipleObjectsReturned:
             queryset = Book.objects.filter(slug=slug)
             data = queryset.first()
+            cart_book_form = CartAddBookForm(id=data.id)
         return render(request, 'book_detail_slug_view.html', {
             'book': data,
-            'cart_book_form': self.cart_book_form
+            'cart_book_form':cart_book_form
         })
 
 
