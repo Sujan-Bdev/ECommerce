@@ -30,7 +30,8 @@ def upload_image_path(instance, filename):
 
 class Category(models.Model):
     title = models.CharField('title', max_length=100, default='')
-    description = models.TextField(default='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.')
+    description = models.TextField(
+        default='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.')
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -79,6 +80,7 @@ class Book(models.Model):
 class Author(models.Model):
     name = models.CharField("Name", max_length=100, blank=False)
     email = models.EmailField("Email", max_length=50, blank=False, null=True)
+    book = models.ManyToManyField(Book, blank=True, null=True)
 
     # image
 
@@ -117,6 +119,7 @@ class Customer(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='customer_profile')
     contact = models.CharField(max_length=14, blank=True, null=True)
     location = models.TextField(blank=True, null=True)
+    book = models.ForeignKey(Book, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return '%s' % self.user

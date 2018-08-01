@@ -1,4 +1,5 @@
 # Create your views here.
+from django.contrib.auth.models import User
 from django.http import HttpResponse, Http404
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, TemplateView, DetailView, FormView
@@ -19,6 +20,8 @@ class HomeView(TemplateView):
         pagination = Paginator(books, 2)
         page = request.GET.get('page')
         book_list = pagination.get_page(page)
+        bookauthor = BookLinkAuthor.objects.all()
+        print(bookauthor)
         context = {
             'object_list': book_list,
             'categories': category,
@@ -39,7 +42,7 @@ def book_list_view(request, *args, **kwargs):
     print(kwargs)
     queryset = Book.objects.all()
     page = paginator(queryset, 10)
-
+    print(request.user.username)
     context = {
         'object_list': queryset,
     }
@@ -85,9 +88,3 @@ def CategorySlugView(request, slug):
     category = Category.objects.all()
     return render(request, 'category_view.html', {'object_list': book_list, 'categories': category})
 
-
-'''
-class BookListView(ListView):
-    queryset = Book.objects.all()
-    template_name = 'book_list_view.html'
-'''

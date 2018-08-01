@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Book, Category, BookLinkAuthor, Author
+from .models import Book, Category, BookLinkAuthor, Author, Customer
 
 
 class BookAdmin(admin.ModelAdmin):
@@ -34,3 +34,10 @@ class BookLinkAuthorAdmin(admin.ModelAdmin):
 
 
 admin.site.register(BookLinkAuthor, BookLinkAuthorAdmin)
+
+
+class CustomerAdmin(admin.ModelAdmin):
+    list_display = ['user']
+
+
+admin.site.register(Customer, CustomerAdmin)
