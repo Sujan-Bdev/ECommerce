@@ -27,7 +27,7 @@ urlpatterns = [
     path('', include('backend.urls')),
     path('eadmin/', include('AdminPanel.urls')),
     path('search/', include('search.url')),
-    path('coupons/', include('coupons.urls', namespace='coupons')),
+    path('coupons', include('coupons.urls', namespace='coupons')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

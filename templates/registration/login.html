@@ -1,20 +1,31 @@
 {% extends 'index.html' %}
 {% block content %}
-    <div class="container" style="{
-    float: none;
-    max-width: 500px;}">
-    <br>
-    <br>
-    <br>
-    <br>
 
+
+    <div class="container" style="{
+    }">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+        <div class="card" style="width: 500px;margin-left: 250px">
+            <div class="card-header">
+                Login
+            </div>
+<div class="card-body">
 <form method="POST" novalidate>
     {% csrf_token %}
     {% include 'registration/form_base.html' with form=form %}
       <button type="submit" class="btn btn-primary">Submit</button>
 </form>
-        <br>
-        <br>
+
         Dont Have an Account. Sign up <a href="{% url 'signup_customer' %}" >here</a>
-        </div>
+</div>
+</div>
+    </div>
+    <br>
+    <br>
+    <br>
+
 {% endblock %}
