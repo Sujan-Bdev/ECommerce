@@ -29,50 +29,55 @@
     <!--Navbar-->
     {% include 'Navbar.html' %}
     <!--/.Navbar-->
-{% block content %}
-    <!--Mask-->
-    {% include 'LandingCover.html' %}
-    <!--/.Mask-->
-</header>
-<!--Main Navigation-->
-<main class="mt-4" style="padding-right: 100px">
-    <div class="container">
-        <section>
+    {% block content %}
+        <!--Mask-->
+        {% include 'LandingCover.html' %}
+        <!--/.Mask-->
+        </header>
+        <!--Main Navigation-->
+        <main class="mt-4" style="padding-right: 100px">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-3 "">
-                    <div class="card" style="width: 15rem;">
-                    <div class="card-header">
-                        <strong>CATEGORIES</strong>
-                    </div>
-                    <div class="card-body">
-                    <div class="list-group list-group-flush">
-                        {% for category in categories %}
-                            {% include './snippets/category.html' %}
-                        {% endfor %}
-                    </div>
-                    </div>
-                    </div>
-                    </div>
+                <section>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-3 "
+                            ">
+                            <div class="card" style="width: 15rem;">
+                                <div class="card-header">
+                                    <strong>CATEGORIES</strong>
+                                </div>
+                                <div class="card-body">
+                                    <div class="list-group list-group-flush">
+                                        {% for category in categories %}
+                                            {% include './snippets/category.html' %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                    <div class="col-lg-9">
-                        {% include 'book_list.html' %}
-                        <br>
-                        {% include 'pagination.html' %}
-                        <br>
-                        <br>
+                        <div class="col-lg-9">
+                            {% if user.is_authenticated %}
+                                {% include 'recommendation.html' %}
+                            {% endif %}
+                            <br>
+                            {% include 'book_list.html' %}
+                            <br>
+                            {% include 'pagination.html' %}
+                            <br>
+                            <br>
+                        </div>
                     </div>
-                </div>
             </div>
-        </section>
+            </section>
 
-        {% include 'exclusiveBooks.html' %}
-        {% include 'bookLaunch.html' %}
-    </div>
-</main>
-<!--Main layout-->
+            {% include 'exclusiveBooks.html' %}
+            {% include 'bookLaunch.html' %}
+            </div>
+        </main>
+        <!--Main layout-->
 
-{% endblock %}
+    {% endblock %}
 <!-- Social buttons -->
 {% block footer %}
     {% include 'Footer.html' %}

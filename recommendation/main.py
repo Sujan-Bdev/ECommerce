@@ -1,72 +1,96 @@
-import math
-book = []
-data = []
-book.append({'author': "Ravi", 'book_name': "Hello 2", 'category': "Sci-Fi"})
-book.append({'author': "Sujan", 'book_name': "Hello", 'category': "Sci-Fi"})
-book.append({'author': "Alish", 'book_name': "World", 'category': "Fiction"})
+def recommend(user_book, book_list):
+    import math
+    import collections
+    user_data = ""
+    total_data = ""
 
-for i in range(0, 3):
-    data.append(book[i]['author']+' '+book[i]['book_name']+' '+book[i]['category'])
+    def check_iteration(book):
+        if isinstance(book, collections.Iterable):
+            return book
+        else:
+            book = (book,)
+            return book
 
+    user_book = check_iteration(user_book)
 
-def freq(term, doc):
-    return doc.split().count(term)
+    for book in user_book:
+        for name in book.booklinkauthor_set.all():
+            user_data += name.author.name + ' '
+        user_data += book.title + ' ' + book.category.title + ' '
+    user_data = user_data.lower().split(" ")
+    user_data.remove('')
+    user_data = " ".join(user_data)
 
+    for book in book_list:
+        total_data += book.title + ' ' + book.category.title
+        for name in book.booklinkauthor_set.all():
+            total_data += ' ' + name.author.name
+        total_data += ';'
 
-def voc_vector(corpus):
-    vector = set()
+    def freq(term, doc):
+        return doc.split().count(term)
 
-    for doc in corpus:
-        for word in doc.split():
-            vector.update([word])
-            print(vector)
-    return vector
+    def voc_vector(corpus):
+        vector = set()
+        for doc in corpus:
+            for word in doc.split():
+                vector.update([word])
+        return vector
 
+    def u_vector(vec):
+        u_vector = []
+        denominator = .0
+        for dimension in vec:
+            denominator += dimension*dimension
+        for dimension in vec:
+            u_vector.append(dimension/math.sqrt(denominator))
+        return u_vector
 
-def u_vector(vec):
-    u_vector = []
-    denominator = .0
-    for dimension in vec:
-        denominator += dimension*dimension
-    for dimension in vec:
-        u_vector.append(dimension/math.sqrt(denominator))
-    return u_vector
+    total_data = total_data.lower().split(";")
+    total_data.remove('')
+    vocabulary = voc_vector(total_data)
 
+    tf_matrix = []
+    for doc in total_data:
+        tf_vector = []
+        for word in vocabulary:
+            tf_vector.append(freq(word, doc))
+        tf_matrix.append(tf_vector)
 
-vocabulary = voc_vector(data)
-
-tf_matrix = []
-for doc in data:
-    tf_vector = []
+    tf_user = []
     for word in vocabulary:
-        tf_vector.append(freq(word, doc))
-    tf_matrix.append(tf_vector)
+        tf_user.append(freq(word, user_data))
 
-unit_vector = []
-for vec in tf_matrix:
-    unit_vector.append(u_vector(vec))
+    unit_vector = []
+    for vec in tf_matrix:
+        unit_vector.append(u_vector(vec))
 
+    unit_user = u_vector(tf_user)
 
-def cosine(A, B):
-    numerator = 0
-    denominator_a = .0
-    denominator_b = .0
-    for dim_a, dim_b in zip(A, B):
-        numerator += (dim_a*dim_b)
-        denominator_a += (dim_a*dim_a)
-        denominator_b += (dim_b*dim_b)
-    denominator = math.sqrt(denominator_a)*math.sqrt(denominator_b)
-    return numerator/denominator
+    def cosine(a, b):
+        numerator = 0
+        denominator_a = .0
+        denominator_b = .0
+        for dim_a, dim_b in zip(a, b):
+            numerator += (dim_a*dim_b)
+            denominator_a += (dim_a*dim_a)
+            denominator_b += (dim_b*dim_b)
+        denominator = math.sqrt(denominator_a)*math.sqrt(denominator_b)
+        return numerator/denominator
 
+    vec = unit_user
+    angle = []
+    for u_vec in unit_vector:
+        angle.append(cosine(vec, u_vec))
 
-vec = unit_vector[0]
-angle = []
-for next_vec in unit_vector:
-    angle.append(cosine(vec, next_vec))
+    item_index = {}
+    for i, item in enumerate(angle):
+        if 0.3 < item < 1.1:
+                item_index[i+1] = item
+    print(item_index)
+    sorted_value = sorted(item_index.items(), key=lambda kv: kv[1])
+    item_index = []
+    for x, _ in sorted_value:
+        item_index.append(x)
 
-item_index = []
-for i, item in enumerate(angle):
-    if item > 0.5:
-        item_index.append(i)
-
-print(item_index)
+    return item_index
