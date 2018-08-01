@@ -1,6 +1,4 @@
 import os
-import random
-
 from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
@@ -67,7 +65,7 @@ class Book(models.Model):
         return self.title
 
     class Meta:
-        ordering = ["title"]
+        ordering = ["id"]
 
     def get_absolute_url(self):
         # return "/book/{slug}/".format(slug=self.slug)
@@ -79,8 +77,7 @@ class Book(models.Model):
 
 class Author(models.Model):
     name = models.CharField("Name", max_length=100, blank=False)
-    email = models.EmailField("Email", max_length=50, blank=False, null=True)
-    book = models.ManyToManyField(Book, blank=True, null=True)
+    email = models.EmailField("Email", max_length=50, blank=True, null=True)
 
     # image
 
