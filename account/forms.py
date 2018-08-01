@@ -14,18 +14,6 @@ class UserCreateForm(forms.ModelForm):
     location = forms.CharField()
     contact = forms.CharField()
 
-    def clean(self):
-        cleaned_data = super(UserCreateForm, self).clean()
-        username = cleaned_data.get('username')
-        password = cleaned_data.get('password')
-        password2 = cleaned_data.get('password2')
-        if password == None:
-            raise forms.ValidationError("Password is empty")
-        password_validation.validate_password(password=password, user=username)
-        if password != password2:
-            raise forms.ValidationError("The two password are not same")
-        return cleaned_data
-
     def save(self):
         new_user = User.objects.create_user(username=self.cleaned_data['username'],
                                             first_name=self.cleaned_data['first_name'],
@@ -73,4 +61,4 @@ class StaffCreateForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'username', 'email', 'password', 'is_staff')
+        fields = ('first_name', 'last_name', 'username', 'email',)
