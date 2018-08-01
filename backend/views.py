@@ -5,9 +5,9 @@ from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, TemplateView, DetailView, FormView
 from django.core.paginator import Paginator
 from cart.forms import CartAddBookForm
-from .models import Book, Category, Author, BookLinkAuthor
-
-from django.core import paginator
+from .models import Book, Category
+from orders.models import OrderItem, Order
+from recommendation.main import recommend
 
 
 class HomeView(TemplateView):
@@ -15,16 +15,34 @@ class HomeView(TemplateView):
     # template_name = 'book_detail_slug_view.html'
 
     def get(self, request, *args, **kwargs):
+        customer_book = []
+        recommend_book = []
+        n = 0
         books = Book.objects.all()
+        if request.user.is_authenticated:
+            user = request.user.username
+            user_info = User.objects.get(username=user)
+            id_no = user_info.id
+            customer_order = Order.objects.all().filter(user=id_no)
+            if len(customer_order):
+                for order in customer_order:
+                    order_id = order.id
+                    customer_info = OrderItem.objects.get(order_id=order_id)
+                    customer_book.append(customer_info.book)
+                index = recommend(customer_book, books)
+                for i in index:
+                    recommend_book.append(Book.objects.get(id=i))
+                recommend_book = (filter(lambda x: x not in customer_book, recommend_book))
+                n = len(index)-len(customer_book)
         category = Category.objects.all()
         pagination = Paginator(books, 2)
         page = request.GET.get('page')
         book_list = pagination.get_page(page)
-        bookauthor = BookLinkAuthor.objects.all()
-        print(bookauthor)
         context = {
             'object_list': book_list,
             'categories': category,
+            'recommend': recommend_book,
+            'length': n
         }
         return render(request, 'index.html', context)
 
@@ -41,7 +59,6 @@ def book_list_view(request, *args, **kwargs):
     print(args)
     print(kwargs)
     queryset = Book.objects.all()
-    page = paginator(queryset, 10)
     print(request.user.username)
     context = {
         'object_list': queryset,

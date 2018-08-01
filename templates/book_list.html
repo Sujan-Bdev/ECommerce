@@ -1,34 +1,35 @@
+<div class="container">
+<h1>Browse Others:</h1>
+    <div class="row">
+        {% for obj in object_list %}
+            <div class="col-sm-4">
 
-    <div class="container">
-        <div class="row">
-            {% for obj in object_list %}
-                <div class="col-sm-4">
-
-                    <div id="logo" class="card card-hover mt-4" style="width: 15rem;">
-                       <div style="padding-top:10px; padding-left:10px;height: 200px; width:14.3rem;overflow: hidden">
-                           <a href="{{ obj.get_absolute_url }}"><span></span></a>
+                <div id="logo" class="card card-hover mt-4" style="width: 15rem;">
+                    <div style="padding-top:10px; padding-left:10px;height: 200px; width:14.3rem;overflow: hidden">
+                        <a href="{{ obj.get_absolute_url }}"><span></span></a>
 
                         {% if obj.image %}
-                            <img style="height: 100%;" class="img-responsive card-img-top" src="{{ obj.image.url }}" alt="{{ obj.title }} logo">
+                            <img style="height: 100%;" class="img-responsive card-img-top" src="{{ obj.image.url }}"
+                                 alt="{{ obj.title }} logo">
 
                         {% endif %}
-                       </div>
-                        <div class="card-body">
-                            <h5 class="card-title">{{ obj.title }}</h5>
-                            <p class="card-text">
-                                By
-                                {% for item in obj.booklinkauthor_set.all %}
-                                    {% if forloop.last %}
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ obj.title }}</h5>
+                        <p class="card-text">
+                            By
+                            {% for item in obj.booklinkauthor_set.all %}
+                                {% if forloop.last %}
                                     {{ item.author.name }}
-                                    {% else %}
+                                {% else %}
                                     {{ item.author.name }},
-                                    {% endif %}
-                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}
                         </p>
-                        </div>
                     </div>
                 </div>
-            {% endfor %}
-        </div>
+            </div>
+        {% endfor %}
     </div>
+</div>
 
