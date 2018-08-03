@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'cart',
     'orders',
     'coupons',
+    'NewBook',
     'widget_tweaks'
 ]
 

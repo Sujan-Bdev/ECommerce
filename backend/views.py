@@ -4,6 +4,8 @@ from django.http import HttpResponse, Http404
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, TemplateView, DetailView, FormView
 from django.core.paginator import Paginator
+
+from NewBook.models import UpcomingBook
 from cart.forms import CartAddBookForm
 from .models import Book, Category
 from orders.models import OrderItem, Order
@@ -33,16 +35,19 @@ class HomeView(TemplateView):
                 for i in index:
                     recommend_book.append(Book.objects.get(id=i))
                 recommend_book = (filter(lambda x: x not in customer_book, recommend_book))
-                n = len(index)-len(customer_book)
+                n = len(index) - len(customer_book)
         category = Category.objects.all()
         pagination = Paginator(books, 2)
         page = request.GET.get('page')
         book_list = pagination.get_page(page)
+        upcomingbook = UpcomingBook.objects.all()
+        print(upcomingbook)
         context = {
             'object_list': book_list,
             'categories': category,
             'recommend': recommend_book,
-            'length': n
+            'length': n,
+            'upcomingbook': upcomingbook
         }
         return render(request, 'index.html', context)
 
@@ -69,7 +74,7 @@ def book_list_view(request, *args, **kwargs):
 def book_detail_view(request, pk=None, *args, **kwargs):
     # instance = Book.objects.get(pk=pk)
     instance = get_object_or_404(Book, pk=pk)
-    cart_book_form=CartAddBookForm(id=pk)
+    cart_book_form = CartAddBookForm(id=pk)
     context = {
         'object': instance,
         'cart_book_form': cart_book_form
@@ -96,7 +101,7 @@ class BookDetailSlugView(DetailView):
             cart_book_form = CartAddBookForm(id=data.id)
         return render(request, 'book_detail_slug_view.html', {
             'book': data,
-            'cart_book_form':cart_book_form
+            'cart_book_form': cart_book_form
         })
 
 
@@ -104,4 +109,3 @@ def CategorySlugView(request, slug):
     book_list = Book.objects.filter(category__slug=slug)
     category = Category.objects.all()
     return render(request, 'category_view.html', {'object_list': book_list, 'categories': category})
-
