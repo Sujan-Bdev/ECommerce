@@ -1,14 +1,15 @@
 <div class="container">
-    <h1>Recommended:</h1>
     <div class="row">
         {% if length > 0 %}
+            <h1>Recommended:</h1>
             {% for obj in recommend %}
                 <div class="col-sm-4">
                     <div id="logo" class="card card-hover mt-4" style="width: 15rem;">
                         <div style="padding-top:10px; padding-left:10px;height: 200px; width:14.3rem;overflow: hidden">
                             <a href="{{ obj.get_absolute_url }}"><span></span></a>
                             {% if obj.image %}
-                                <img style="height: 100%;" class="img-responsive card-img-top" src="{{ obj.image.url }}"
+                                <img style="height: 100%;" class="img-responsive card-img-top"
+                                     src="{{ obj.image.url }}"
                                      alt="{{ obj.title }} logo">
 
                             {% endif %}
@@ -31,7 +32,7 @@
             {% endfor %}
         {% else %}
             <br/>
-            <h1>Buy Some Books First</h1>
+            {% include 'toplist.html' %}
         {% endif %}
     </div>
 </div>
