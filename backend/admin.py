@@ -1,8 +1,9 @@
 from django.contrib import admin
 
-from .models import Book, Category, BookLinkAuthor, Author, Customer
+from .models import Book, Category, BookLinkAuthor, Author, Customer,BookLinkCategory
 
 
+admin.site.register(BookLinkCategory)
 class BookAdmin(admin.ModelAdmin):
     list_display = ['title', 'category', 'stock', 'price', 'available']
     list_display_links = ['title']
