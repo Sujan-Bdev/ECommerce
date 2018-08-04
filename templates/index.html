@@ -41,30 +41,33 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-3 ">
-                            <div class="card" style="width: 15rem;">
-                                <div class="card-header">
-                                    <strong>CATEGORIES</strong>
-                                </div>
-                                <div class="card-body">
-                                    <div class="list-group list-group-flush">
-                                        {% for category in categories %}
-                                            {% include './snippets/category.html' %}
-                                        {% endfor %}
+                                <div class="card" style="width: 15rem;">
+                                    <div class="card-header">
+                                        <strong>CATEGORIES</strong>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="list-group list-group-flush">
+                                            {% for category in categories %}
+                                                {% include './snippets/category.html' %}
+                                            {% endfor %}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="col-lg-9">
-                            {% if user.is_authenticated %}
-                                {% include 'recommendation.html' %}
-                            {% endif %}
-                            <br>
-                            {% include 'book_list.html' %}
-                            <br>
-                            {% include 'pagination.html' %}
-                            <br>
-                            <br>
+                            <div class="col-lg-9">
+                                {% if user.is_authenticated %}
+                                    {% include 'recommendation.html' %}
+                                {% else %}
+                                    {% include 'toplist.html' %}
+                                {% endif %}
+                                <br>
+                                {% include 'book_list.html' %}
+                                <br>
+                                {% include 'pagination.html' %}
+                                <br>
+                                <br>
+                            </div>
                         </div>
                     </div>
                 </section>

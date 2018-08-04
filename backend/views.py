@@ -10,6 +10,7 @@ from cart.forms import CartAddBookForm
 from .models import Book, Category
 from orders.models import OrderItem, Order
 from recommendation.main import recommend
+import itertools
 
 
 class HomeView(TemplateView):
@@ -21,33 +22,43 @@ class HomeView(TemplateView):
         recommend_book = []
         n = 0
         books = Book.objects.all()
+        sold_books = OrderItem.objects.all().order_by('quantity')
+        total_sold = itertools.islice(sold_books, 10)
+        exclusive_book = itertools.islice(sold_books, 3)
         if request.user.is_authenticated:
             user = request.user.username
             user_info = User.objects.get(username=user)
             id_no = user_info.id
             customer_order = Order.objects.all().filter(user=id_no)
             if len(customer_order):
-                for order in customer_order:
-                    order_id = order.id
-                    customer_info = OrderItem.objects.get(order_id=order_id)
-                    customer_book.append(customer_info.book)
+                for orders in customer_order:
+                    order_id = orders.id
+                    customer_info = OrderItem.objects.all().filter(order_id=order_id)
+                    for item in customer_info:
+                        customer_book.append(item.book)
+                customer_book = set(customer_book)
+                print(customer_book)
                 index = recommend(customer_book, books)
                 for i in index:
                     recommend_book.append(Book.objects.get(id=i))
                 recommend_book = (filter(lambda x: x not in customer_book, recommend_book))
                 n = len(index) - len(customer_book)
+                if n > 10:
+                    recommend_book = itertools.islice(recommend_book, 10)
         category = Category.objects.all()
-        pagination = Paginator(books, 2)
+        pagination = Paginator(books, 8)
         page = request.GET.get('page')
         book_list = pagination.get_page(page)
         upcomingbook = UpcomingBook.objects.all()
-        print(upcomingbook)
         context = {
+            'name': request.user.username.upper(),
             'object_list': book_list,
             'categories': category,
             'recommend': recommend_book,
             'length': n,
-            'upcomingbook': upcomingbook
+            'upcomingbook': upcomingbook,
+            'sold_books': total_sold,
+            'exclusive_book': exclusive_book
         }
         return render(request, 'index.html', context)
 
