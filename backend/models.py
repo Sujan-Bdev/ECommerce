@@ -74,6 +74,16 @@ class Book(models.Model):
     def age(self):
         return timesince(self.publish_date)
 
+class BookLinkCategory(models.Model):
+    category = models.ForeignKey(Category, on_delete=models.CASCADE,related_name='category_booklink')
+    book = models.ForeignKey(Book, on_delete=models.CASCADE,related_name='book_categorylink')
+    
+def convert():#This function needs to be called once to migrate saved foregin key to new table after migarating the forgin key deleted garda hunxa
+    books=Book.objects.all()
+    for book in books:
+        if book.category:
+            BookLinkCategory(category=book.category,book=book).save()
+            
 
 class Author(models.Model):
     name = models.CharField("Name", max_length=100, blank=False)
