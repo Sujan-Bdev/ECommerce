@@ -75,8 +75,8 @@ class Book(models.Model):
         return timesince(self.publish_date)
 
 class BookLinkCategory(models.Model):
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE,related_name='category_booklink')
+    book = models.ForeignKey(Book, on_delete=models.CASCADE,related_name='book_categorylink')
     
 def convert():#This function needs to be called once to migrate saved foregin key to new table after migarating the forgin key deleted garda hunxa
     books=Book.objects.all()
