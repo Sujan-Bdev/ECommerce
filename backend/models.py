@@ -82,7 +82,8 @@ def convert():#This function needs to be called once to migrate saved foregin ke
     books=Book.objects.all()
     for book in books:
         if book.category:
-            BookLinkCategory(category=book.category,book=book)
+            BookLinkCategory(category=book.category,book=book).save()
+            
 
 class Author(models.Model):
     name = models.CharField("Name", max_length=100, blank=False)
