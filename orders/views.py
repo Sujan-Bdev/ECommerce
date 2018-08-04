@@ -11,6 +11,8 @@ def order_completed(request,id):
     else:
         Book.objects.get(id=id).stock=0
 
+def get_book_order_maximum():
+    top_10_books=Book.objects.annotate(num_books=Count('order_items')).order_by('-num_books')[:10]
 
 def order_create(request):
     cart = Cart(request)
