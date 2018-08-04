@@ -22,7 +22,7 @@
             {% for item in cart %}
             <li class="list-group-item">
                 {{ item.quantity }} <span style="padding-left: 2em"></span> x <span style="padding-left: 2em"></span> {{ item.book.title }}
-               <span style="padding-left: 2em">=  <span style="padding-left: 2em">Rs. {{ item.total_price }}</span>
+                <span style="padding-left: 2em">=  <span style="padding-left: 2em">Rs. {{ item.total_price }}</span></span>
             </li>
             {% endfor %}
         <li class="list-group-item active">Total Cost: Rs. {{ cart.get_total_price }}</li>
