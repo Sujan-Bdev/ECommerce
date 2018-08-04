@@ -14,7 +14,8 @@ def order_completed(request,id):
 
 
 def get_book_order_maximum():
-    top_10_books=Book.objects.annotate(num_books=Count('order_items')).order_by('-num_books')[:10]
+    books=Book.objects.annotate(num_books=Count('order_items')).order_by('-num_books')
+    top_10_books = books.exclude(num_books__lt=1)[:9]
     return top_10_books
 
 def order_create(request):
