@@ -27,7 +27,7 @@
                 </ol>
                 <!--/.Indicators-->
                 <!--Slides-->
-                <div class="carousel-inner z-depth-1-half" role="listbox">
+                <div class="carousel-inner ml-5" role="listbox">
 
 
                     {% for obj in upcomingbook %}
@@ -44,8 +44,12 @@
 
                         {% endif %}
 
-                    <img class="d-block w-100 h-75" src="{{ obj.image.url }}" alt="First slide">
-
+                            <div class="view overlay">
+                                <img src="{{ obj.image.url }}" class="img-fluid" alt="First slide">
+                                <a>
+                                    <div class="mask waves-effect waves-light rgba-white-slight"></div>
+                                </a>
+</div>
                     </div>
 
                         <!--/First slide-->
