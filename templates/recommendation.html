@@ -1,7 +1,7 @@
 <div class="container">
+<h1>Recommended:</h1>
     <div class="row">
         {% if length > 0 %}
-            <h1>Recommended:</h1>
             {% for obj in recommend %}
                 <div class="col-sm-4">
                     <div id="logo" class="card card-hover mt-4" style="width: 15rem;">
@@ -32,7 +32,7 @@
             {% endfor %}
         {% else %}
             <br/>
-            {% include 'toplist.html' %}
+            <h1>Continue Shopping to get Recommendation</h1>
         {% endif %}
     </div>
 </div>
