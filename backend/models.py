@@ -77,12 +77,12 @@ class Book(models.Model):
 class BookLinkCategory(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
-
-    def convert():#This function needs to be called once to migrate saved foregin key to new table after migarating the forgin key deleted garda hunxa
-        books=Book.objects.all()
-        for book in books:
-            if book.category:
-                BookLinkCategory(category=book.category,book=book)
+    
+def convert():#This function needs to be called once to migrate saved foregin key to new table after migarating the forgin key deleted garda hunxa
+    books=Book.objects.all()
+    for book in books:
+        if book.category:
+            BookLinkCategory(category=book.category,book=book)
 
 class Author(models.Model):
     name = models.CharField("Name", max_length=100, blank=False)
