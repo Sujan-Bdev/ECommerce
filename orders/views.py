@@ -5,6 +5,7 @@ from .models import OrderItem
 from backend.models import Book
 from .forms import OrderCreateForm
 from cart.cart import Cart
+from django.db.models import Count
 
 def order_completed(request,id):
     if Book.objects.get(id=id).stock>1:
@@ -12,8 +13,11 @@ def order_completed(request,id):
     else:
         Book.objects.get(id=id).stock=0
 
+
 def get_book_order_maximum():
-    top_10_books=Book.objects.annotate(num_books=Count('order_items')).order_by('-num_books')[:10]
+    books=Book.objects.annotate(num_books=Count('order_items')).order_by('-num_books')
+    top_10_books = books.exclude(num_books__lt=1)[:9]
+    return top_10_books
 
 def order_create(request):
     cart = Cart(request)
