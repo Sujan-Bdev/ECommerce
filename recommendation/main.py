@@ -1,6 +1,7 @@
 def recommend(user_book, book_list):
     import math
     import collections
+    import operator
     user_data = ""
     total_data = ""
 
@@ -16,17 +17,20 @@ def recommend(user_book, book_list):
     for book in user_book:
         for name in book.booklinkauthor_set.all():
             user_data += name.author.name + ' '
-        for item in book.book_categorylink.all():
-            user_data += item.category.title + ' '
-        user_data += book.title + ' '
+        #for item in book.book_categorylink.all():
+         #   user_data += item.category.title + ' '
+        user_data += book.title + ' ' + book.category.title + ' '
     user_data = user_data.lower().split(" ")
     user_data.remove('')
     user_data = " ".join(user_data)
+    print(user_data)
 
     for book in book_list:
         total_data += book.title + ' ' + book.category.title
         for name in book.booklinkauthor_set.all():
             total_data += ' ' + name.author.name
+        #for item in book.book_categorylink.all():
+         #   total_data += ' ' + item.category.title
         total_data += ';'
 
     def freq(term, doc):
@@ -87,10 +91,11 @@ def recommend(user_book, book_list):
 
     item_index = {}
     for i, item in enumerate(angle):
-        if 0.3 < item < 1:
+        if 0 < item < 1:
                 item_index[i+1] = item
-    print(item_index)
-    sorted_value = sorted(item_index.items(), key=lambda kv: kv[1])
+
+    sorted_value = sorted(item_index.items(), reverse=True, key=operator.itemgetter(1))
+
     item_index = []
     for x, _ in sorted_value:
         item_index.append(x)

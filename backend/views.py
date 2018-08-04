@@ -11,7 +11,7 @@ from .models import Book, Category
 from orders.models import OrderItem, Order
 from recommendation.main import recommend
 import itertools
-
+from orders.views import get_book_order_maximum
 
 class HomeView(TemplateView):
     # queryset = Book.objects.all()
@@ -22,9 +22,9 @@ class HomeView(TemplateView):
         recommend_book = []
         n = 0
         books = Book.objects.all()
-        sold_books = OrderItem.objects.all().order_by('quantity')
-        total_sold = itertools.islice(sold_books, 10)
-        exclusive_book = itertools.islice(sold_books, 3)
+        top_sold = get_book_order_maximum()
+        exclusive = top_sold[:3]
+        print(top_sold)
         if request.user.is_authenticated:
             user = request.user.username
             user_info = User.objects.get(username=user)
@@ -43,13 +43,14 @@ class HomeView(TemplateView):
                     recommend_book.append(Book.objects.get(id=i))
                 recommend_book = (filter(lambda x: x not in customer_book, recommend_book))
                 n = len(index) - len(customer_book)
-                if n > 10:
-                    recommend_book = itertools.islice(recommend_book, 10)
+                if n > 9:
+                    recommend_book = itertools.islice(recommend_book, 9)
         category = Category.objects.all()
-        pagination = Paginator(books, 8)
+        pagination = Paginator(books,12)
         page = request.GET.get('page')
         book_list = pagination.get_page(page)
         upcomingbook = UpcomingBook.objects.all()
+        uplength = len(upcomingbook)
         context = {
             'name': request.user.username.upper(),
             'object_list': book_list,
@@ -57,8 +58,9 @@ class HomeView(TemplateView):
             'recommend': recommend_book,
             'length': n,
             'upcomingbook': upcomingbook,
-            'sold_books': total_sold,
-            'exclusive_book': exclusive_book
+            'sold_books': top_sold,
+            'exclusive_book': exclusive,
+            'uplength': uplength
         }
         return render(request, 'index.html', context)
 
