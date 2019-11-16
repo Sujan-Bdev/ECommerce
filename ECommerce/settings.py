@@ -81,11 +81,11 @@ WSGI_APPLICATION = 'ECommerce.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'pustak1',
-        'USER': 'postgres',
-        'PASSWORD': 'subu12345',
-        'HOST': 'localhost',
-        'PORT': '',
+        'NAME': 'd19f8qmqg9tgbq',
+        'USER': 'gjhcvgonufgbir',
+        'PASSWORD': '43454b308f860f226f825500448d760ab8df280a305fc2f57f2a88057fe94ace',
+        'HOST': 'ec2-174-129-222-15.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
