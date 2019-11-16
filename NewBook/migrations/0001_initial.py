@@ -9,9 +9,9 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-        ('backend', '0005_auto_20180803_0855'),
-    ]
+    # dependencies = [
+    #     ('backend', '0005_auto_20180803_0855'),
+    # ]
 
     operations = [
         migrations.CreateModel(
