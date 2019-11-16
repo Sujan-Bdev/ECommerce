@@ -134,4 +134,3 @@ STATICFILES_DIRS = [
 
 LOGIN_REDIRECT_URL = 'index'
 CART_SESSION_ID = 'cart'
-django_heroku.settings(locals())
