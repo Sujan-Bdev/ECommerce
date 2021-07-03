@@ -14,7 +14,6 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
@@ -24,7 +23,7 @@ SECRET_KEY = '9o^*ndeh@m#%(7_(_1=3ytiy%cig2x#xth^7uzkuo_c*tpbud0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['online-book-store-1.herokuapp.com']
 
 # Application definition
 
@@ -82,11 +81,11 @@ WSGI_APPLICATION = 'ECommerce.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'pustak1',
-        'USER': 'postgres',
-        'PASSWORD': 'subu12345',
-        'HOST': 'localhost',
-        'PORT': '',
+        'NAME': 'd19f8qmqg9tgbq',
+        'USER': 'gjhcvgonufgbir',
+        'PASSWORD': '43454b308f860f226f825500448d760ab8df280a305fc2f57f2a88057fe94ace',
+        'HOST': 'ec2-174-129-222-15.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
@@ -123,8 +122,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
-
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
